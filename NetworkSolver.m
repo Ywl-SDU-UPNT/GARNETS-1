@@ -1,8 +1,8 @@
 function [SolRes,Delay,dL_Com_Rob,TimeInf] = NetworkSolver(AcousticData,SVPData,Par) 
 %% ++++Parameters configuration++++
 % Solution strategy configuration
-SolModel   = Par.SolModel;      
-SingleSPNO = Par.SingleSPNO;
+SolModel   = Par.SolModel;        % Solving model  
+SingleSPNO = Par.SingleSPNO;      % Single point solution point number
 ArmLen     = Par.ArmLen;          % Arm length
 x_Jap      = Par.x0s;             % Initial value of seafloor transducer position
 BreakTime  = Par.BreakTime;       % Data breakpoint detection time
@@ -12,7 +12,7 @@ MedBreak   = Par.MedBreak ;       % Centre point breakpoint detection time
 MedTime    = Par.MedTime  ;       % Centre point delay segmentation time
 WeightType = Par.WeightType;      % 0(Height angle weighting) or 1(Euqal weighting) 
 % Main parameter constraints
-Mu_Main     = Par.Mu_Main;   
+Mu_Main     = Par.Mu_Main;        % Main parameter constraints
 Mu_ZenDelay = Par.Mu_ZenDelay;    % Zenith delay parameter constraints
 Mu_HorDelay = Par.Mu_HorDelay;    % Horizontal delay parameter constraints
 Mu_MedDelay = Par.Mu_MedDelay;    % Centre point delay parameter constraints
@@ -37,9 +37,9 @@ RControlIdx  = [17 18 19];  % Receive point
 SAttitudeIdx = [13 14 15];  % Emission attitude
 RAttitudeIdx = [20 21 22];  % Receive attitude
 % Data information
-DateUTC = AcousticData.Header.DateUTC ;  
+DateUTC = AcousticData.Header.DateUTC ;              % Data observation time
 DateUTC = str2num(strrep(DateUTC,'-',','));
-[ObsData,StntionObs] = StandardData1(AcousticData);   
+[ObsData,StntionObs] = StandardData1(AcousticData);  % 
 ObsStartTime = ObsData(1,9);
 ObsEndTime   = ObsData(end,9);
 TotalObs     = ObsData;
